@@ -97,7 +97,7 @@ void thread2(void) {
     }
 }
 
-void main(void) {
+int main(void) {
 
 	/* Initialize Mutex, Ring Buffer & Create Threads. */
 	
@@ -112,4 +112,6 @@ void main(void) {
     k_thread_create(&thread2_data, thread2_stack, STACK_SIZE,
                     (k_thread_entry_t)thread2, NULL, NULL, NULL,
                     THREAD2_PRIORITY, 0, K_NO_WAIT);
+	
+    return 0;
 }
