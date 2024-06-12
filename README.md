@@ -1,6 +1,6 @@
 # Zephyr_RTOS_Demo
 A small assignment project on Zephyr RTOS
-________________________________________
+____________________________________________________________________________________________________________________
 
 # Setting Up Zephyr RTOS on Linux
 
@@ -71,54 +71,7 @@ Remember to activate the virtual environment every time you start working.
   3. Run the Zephyr SDK bundle setup script:
   
     cd zephyr-sdk-0.16.8
-    ./setup.sh.. zephyr:code-sample:: synchronization
-   :name: Basic Synchronization
-   :relevant-api: thread_apis semaphore_apis
-
-   Manipulate basic kernel synchronization primitives.
-
-Overview
-********
-
-A simple application that demonstrates basic sanity of the kernel.
-Two threads (A and B) take turns printing a greeting message to the console,
-and use sleep requests and semaphores to control the rate at which messages
-are generated. This demonstrates that kernel scheduling, communication,
-and timing are operating correctly.
-
-Building and Running
-********************
-
-This project outputs to the console.  It can be built and executed
-on QEMU as follows:
-
-.. zephyr-app-commands::
-   :zephyr-app: samples/synchronization
-   :host-os: unix
-   :board: qemu_x86
-   :goals: run
-   :compact:
-
-Sample Output
-=============
-
-.. code-block:: console
-
-   threadA: Hello World!
-   threadB: Hello World!
-   threadA: Hello World!
-   threadB: Hello World!
-   threadA: Hello World!
-   threadB: Hello World!
-   threadA: Hello World!
-   threadB: Hello World!
-   threadA: Hello World!
-   threadB: Hello World!
-
-   <repeats endlessly>
-
-Exit QEMU by pressing :kbd:`CTRL+A` :kbd:`x`.
-
+    ./setup.sh
 
   4. Install udev rules, which allow you to flash most Zephyr boards as a regular user:
 
@@ -144,17 +97,13 @@ Exit QEMU by pressing :kbd:`CTRL+A` :kbd:`x`.
     
     Generating files from /home/stark/zephyrproject/build/zephyr/zephyr.elf for 
     board: native_posix
+    
+# References
+
+    https://docs.zephyrproject.org/latest/kernel/data_structures/ring_buffers.html#implementation
+    https://docs.zephyrproject.org/apidoc/latest/group__random__api.html#ga62cb24a6049b7aa9d03d66786e4a4db6
+    https://docs.zephyrproject.org/latest/kernel/services/threads/index.html
 
   5. Run the program:
 
     ./build/zephyr/zephyr.exe
-
-# Psuedo Code
-    
-# Assumptions and failures
-
-# References
-    https://docs.zephyrproject.org/latest/kernel/data_structures/ring_buffers.html#implementation
-    https://docs.zephyrproject.org/apidoc/latest/group__random__api.html#ga62cb24a6049b7aa9d03d66786e4a4db6
-    https://docs.zephyrproject.org/latest/kernel/services/threads/index.html
-    https://docs.zephyrproject.org/apidoc/latest/group__mutex__apis.html
