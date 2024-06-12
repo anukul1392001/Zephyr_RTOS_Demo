@@ -116,12 +116,23 @@ struct ring_buf ring_buffer;
 Thread 1 generates a random number of bytes and writes them to the buffer if there is enough space available.
 
 ```pseudo
-void thread1() {
-    mutex_lock();
-    
-        
-    mutex_unlock();
-    sleep(k_seconds(1));
+Function thread1:
+    Declare an array rand_bytes with size 50 to store random bytes
+
+    Loop forever:
+        Acquire the mutex lock on buffer_mutex
+
+        Generate a random number between 1 and 50 and store it in num_bytes
+
+        Loop from 0 to num_bytes-1:
+            Generate a random byte and store it in rand_bytes at the current index
+
+        If ring buffer cannot store all num_bytes from rand_bytes:
+            Print "Overflow!"
+
+        Release the mutex lock on buffer_mutex
+
+        Sleep for 1 secondeep(k_seconds(1)); //Sleep for 1 sec
 }
 ```
 
@@ -130,12 +141,30 @@ void thread1() {
 Thread 2 checks if there are at least 512 bytes in the buffer. If so, it prints the latest 512 bytes and then removes them from the buffer.
 
 ```pseudo
-void thread2() {
-    mutex_lock();
-    
-    
-    mutex_unlock();
-}
+Function thread2:
+    Declare an array `print_buffer` of size 512
+    Declare a variable `buffer_len` of type size_t, initialized to 0
+
+    While true:
+        Sleep for 10 seconds
+        
+        Acquire the mutex `buffer_mutex` with a timeout of forever
+
+        If the size of `ring_buffer` is greater than or equal to 512:
+            Retrieve 512 bytes from `ring_buffer` and store in `print_buffer`
+            Set `buffer_len` to the number of bytes retrieved
+            
+            If `buffer_len` is equal to 512:
+                Print "Latest 512 bytes (in hex):"
+                For each byte in `print_buffer` from 0 to 511:
+                    Print the byte in hexadecimal format
+                Print a newline
+            Else:
+                Print "Error reading 512 Bytes"
+        
+        Release the mutex `buffer_mutex`
+
+End Function
 ```
 
 ## Main Function
@@ -143,11 +172,13 @@ void thread2() {
 The `main` function initializes the mutex, ring buffer and creates the two threads.
 
 ```pseudo
-void main() {
-    init_ringBuffer();
-    init_mutex();
-    create_thread(thread1);
-    create_thread(thread2);
+int main() {
+    Initialize Mutex
+    Initialize Ring Buffer of Size BUFFER_SIZE = 1024
+    Create thread1 with priority 1 and Stack Size STACK_SIZE = 1024 with no parameters passed
+    Create thread1 with priority 2 and Stack Size STACK_SIZE = 1024 with no parameters passed
+
+    return 0;
 }
 ```
     
