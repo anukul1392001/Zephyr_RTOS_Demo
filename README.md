@@ -149,6 +149,10 @@ Exit QEMU by pressing :kbd:`CTRL+A` :kbd:`x`.
 
     ./build/zephyr/zephyr.exe
 
+# Psuedo Code
+    
+# Assumptions and failures
+
 # References
     https://docs.zephyrproject.org/latest/kernel/data_structures/ring_buffers.html#implementation
     https://docs.zephyrproject.org/apidoc/latest/group__random__api.html#ga62cb24a6049b7aa9d03d66786e4a4db6
