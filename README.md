@@ -97,13 +97,13 @@ Remember to activate the virtual environment every time you start working.
     
     Generating files from /home/stark/zephyrproject/build/zephyr/zephyr.elf for 
     board: native_posix
+
+  5. Run the program:
+
+    ./build/zephyr/zephyr.exe
     
 # References
 
     https://docs.zephyrproject.org/latest/kernel/data_structures/ring_buffers.html#implementation
     https://docs.zephyrproject.org/apidoc/latest/group__random__api.html#ga62cb24a6049b7aa9d03d66786e4a4db6
     https://docs.zephyrproject.org/latest/kernel/services/threads/index.html
-
-  5. Run the program:
-
-    ./build/zephyr/zephyr.exe
