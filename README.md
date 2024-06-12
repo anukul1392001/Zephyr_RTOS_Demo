@@ -102,6 +102,56 @@ Remember to activate the virtual environment every time you start working.
 
     ./build/zephyr/zephyr.exe
     
+
+# Psuedo Code
+
+## Buffer Initialization
+Initialize Ring Buffer
+```pseudo
+struct ring_buf ring_buffer;
+```
+
+## Thread 1: Buffer Writer
+
+Thread 1 generates a random number of bytes and writes them to the buffer if there is enough space available.
+
+```pseudo
+void thread1() {
+    mutex_lock();
+    
+        
+    mutex_unlock();
+    sleep(k_seconds(1));
+}
+```
+
+## Thread 2: Buffer Reader
+
+Thread 2 checks if there are at least 512 bytes in the buffer. If so, it prints the latest 512 bytes and then removes them from the buffer.
+
+```pseudo
+void thread2() {
+    mutex_lock();
+    
+    
+    mutex_unlock();
+}
+```
+
+## Main Function
+
+The `main` function initializes the mutex, ring buffer and creates the two threads.
+
+```pseudo
+void main() {
+    init_ringBuffer();
+    init_mutex();
+    create_thread(thread1);
+    create_thread(thread2);
+}
+```
+    
+    
 # References
 
     https://docs.zephyrproject.org/latest/kernel/data_structures/ring_buffers.html#implementation
